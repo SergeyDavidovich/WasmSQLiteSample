@@ -38,19 +38,19 @@ public class WasmSQLiteSampleEntityFrameworkCoreModule : AbpModule
     {
         context.Services.AddAbpDbContext<WasmSQLiteSampleDbContext>(options =>
         {
-                /* Remove "includeAllEntities: true" to create
-                 * default repositories only for aggregate roots */
+            /* Remove "includeAllEntities: true" to create
+             * default repositories only for aggregate roots */
             options.AddDefaultRepositories(includeAllEntities: true);
         });
 
         Configure<AbpDbContextOptions>(options =>
         {
-                /* The main point to change your DBMS.
-                 * See also WasmSQLiteSampleMigrationsDbContextFactory for EF Core tooling. */
+            /* The main point to change your DBMS.
+             * See also WasmSQLiteSampleMigrationsDbContextFactory for EF Core tooling. */
             options.UseSqlite();
         });
-        
-        //https://githubhelp.com/abpframework/abp/issues/12248
+
+        // https://github.com/abpframework/abp/issues/12248
         Configure<AbpUnitOfWorkDefaultOptions>(options =>
         {
             options.TransactionBehavior = UnitOfWorkTransactionBehavior.Disabled;
